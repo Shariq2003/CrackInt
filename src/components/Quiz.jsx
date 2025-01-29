@@ -8,8 +8,6 @@ const Quiz = ({ Problems, isQuizStarted, setIsQuizStarted }) => {
     const [index, setIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [correctAnswer, setCorrectAnswer] = useState(null);
-    const [isAnswerSelected, setIsAnswerSelected] = useState(false);
 
     const navigate = useNavigate();
     const currentProblem = Problems[index];
@@ -23,12 +21,9 @@ const Quiz = ({ Problems, isQuizStarted, setIsQuizStarted }) => {
 
     const handleAnswer = (selectedOption) => {
         setSelectedAnswer(selectedOption);
-        setCorrectAnswer(currentProblem.options.find((option) => option.is_answer));
 
         const newScore = score + (selectedOption.is_answer ? 1 : 0);
         setScore(newScore);
-
-        setIsAnswerSelected(true);
 
         if (index >= Problems.length - 1) {
             toast.success(`Quiz completed! Your score is ${newScore} out of ${Problems.length}`);
@@ -38,8 +33,6 @@ const Quiz = ({ Problems, isQuizStarted, setIsQuizStarted }) => {
             }, 3500);
         }
     };
-
-
 
     return (
         <div className="w-3/4 p-6 overflow-hidden h-screen flex justify-center items-center bg-gray-900 text-gray-300">
@@ -69,9 +62,7 @@ const Quiz = ({ Problems, isQuizStarted, setIsQuizStarted }) => {
                             <button
                                 onClick={() => {
                                     setIndex(index + 1);
-                                    setIsAnswerSelected(false);
                                     setSelectedAnswer(null);
-                                    setCorrectAnswer(null);
                                 }}
                                 className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 cursor-pointer"
                             >

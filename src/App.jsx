@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
@@ -12,15 +12,16 @@ function App() {
 
   function SubjectSetter(currentSubject) {
     setSubject(currentSubject);
+    setIsQuizStarted(false);
     console.log(currentSubject);
   }
-  function Filter(level) {
+  const Filter = useCallback((level)=> {
     const filteredProblems = PROBLEMS.filter(
       (problem) => problem.key === Subject && problem.level === level
     );
     setProblems(filteredProblems);
     console.log(Problems);
-  }
+  },[Subject,Problems]);
 
   return (
     <Routes>
