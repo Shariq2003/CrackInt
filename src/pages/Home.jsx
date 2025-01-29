@@ -1,7 +1,7 @@
 import Card from '../components/Card';
 import { SUBJECTS } from "../data";
 
-const Home = ({setter}) => {
+const Home = ({ SubjectSetter }) => {
     return (
         <div className="flex flex-wrap justify-center gap-8 p-6">
             {Object.values(SUBJECTS).map((subject) => (
@@ -11,7 +11,7 @@ const Home = ({setter}) => {
                     heading={subject.heading}
                     subheading={subject.subheading}
                     imageUrl={subject.imageUrl}
-                    setter={setter}
+                    SubjectSetter={SubjectSetter}
                 />
             ))}
         </div>
