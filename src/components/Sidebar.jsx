@@ -1,26 +1,27 @@
-const Sidebar = () => {
+const Sidebar = ({ Filter }) => {
+    const difficultyLevels = [
+        { level: 'easy', color: 'blue' },
+        { level: 'medium', color: 'yellow' },
+        { level: 'hard', color: 'red' }
+    ];
+
     return (
-        <div className="w-1/4 bg-gray-800 text-white p-6">
+        <div className="w-1/6 bg-gray-800 text-white p-6 h-[calc(100vh-0rem)]">
             <h2 className="text-2xl font-semibold mb-4">Welcome to the Quiz!</h2>
             <p className="mb-6">Choose a difficulty level to start:</p>
-
-            {/* Difficulty Levels */}
             <ul>
-                <li className="mb-4">
-                    <button className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
-                        Easy
-                    </button>
-                </li>
-                <li className="mb-4">
-                    <button className="w-full px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none">
-                        Medium
-                    </button>
-                </li>
-                <li className="mb-4">
-                    <button className="w-full px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none">
-                        Hard
-                    </button>
-                </li>
+                {difficultyLevels.map((difficulty) => (
+                    <>
+                        <li className="mb-4">
+                            <button
+                                className={`w-full px-4 py-2 bg-${difficulty.color}-500 text-white rounded-md hover:bg-${difficulty.color}-600 focus:outline-none`}
+                                onClick={() => Filter(difficulty.level)}
+                            >
+                                {difficulty.level.charAt(0).toUpperCase() + difficulty.level.slice(1)}
+                            </button>
+                        </li>
+                    </>
+                ))}
             </ul>
         </div>
     );
