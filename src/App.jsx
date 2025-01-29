@@ -18,6 +18,7 @@ function App() {
       (problem) => problem.key === Subject && problem.level === level
     );
     setProblems(filteredProblems);
+    console.log(Problems);
   }
 
   return (

@@ -1,8 +1,31 @@
-const QuizCard = () => {
+import React from "react";
+
+const QuizCard = ({ problem, onAnswer, selectedAnswer, correctAnswer }) => {
     return (
-        <div className="w-3/4 p-6">
-            <h2 className="text-3xl font-semibold mb-4">Quiz Questions</h2>
-            <p>Quiz content goes here...</p>
+        <div className="mb-6 p-4 border border-gray-300 rounded-lg">
+            <h3 className="text-xl font-semibold">{problem.question}</h3>
+            <ul className="mt-4">
+                {problem.options.map((option, index) => {
+                    let buttonClass = "w-full px-4 py-2 bg-gray-200 rounded-md mb-2";
+                    if (selectedAnswer) {
+                        if (option.is_answer) {
+                            buttonClass = "w-full px-4 py-2 bg-green-500 text-white rounded-md mb-2"; // Correct answer green
+                        } else if (selectedAnswer.option === option.option) {
+                            buttonClass = "w-full px-4 py-2 bg-red-500 text-white rounded-md mb-2"; // Incorrect selected red
+                        }
+                    }
+                    return (
+                        <li key={index}>
+                            <button
+                                onClick={() => onAnswer(option)}
+                                className={buttonClass}
+                            >
+                                {option.option}
+                            </button>
+                        </li>
+                    );
+                })}
+            </ul>
         </div>
     );
 };
