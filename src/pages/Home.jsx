@@ -1,9 +1,10 @@
 import Card from '../components/Card';
 import { SUBJECTS } from "../data";
+import PropTypes from "prop-types";
 
 const Home = ({ SubjectSetter }) => {
     return (
-        <div className="flex flex-wrap justify-center gap-8 p-6">
+        <div className="flex flex-wrap justify-center gap-8 p-6 bg-gray-900 min-h-screen text-white">
             {Object.values(SUBJECTS).map((subject) => (
                 <Card
                     key={subject.key}
@@ -16,6 +17,10 @@ const Home = ({ SubjectSetter }) => {
             ))}
         </div>
     );
+};
+
+Home.propTypes = {
+    SubjectSetter: PropTypes.func.isRequired,
 };
 
 export default Home;

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 const Sidebar = ({ Filter, setIsQuizStarted }) => {
     const difficultyLevels = [
         { level: 'easy', color: 'blue' },
@@ -27,6 +28,11 @@ const Sidebar = ({ Filter, setIsQuizStarted }) => {
             </ul>
         </div>
     );
+};
+
+Sidebar.propTypes = {
+    Filter: PropTypes.func.isRequired,
+    setIsQuizStarted: PropTypes.func.isRequired,
 };
 
 export default Sidebar;
