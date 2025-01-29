@@ -8,6 +8,7 @@ import { PROBLEMS } from './data';
 function App() {
   const [Subject, setSubject] = useState(null);
   const [Problems, setProblems] = useState(PROBLEMS);
+  const [isQuizStarted, setIsQuizStarted] = useState(false);
 
   function SubjectSetter(currentSubject) {
     setSubject(currentSubject);
@@ -24,9 +25,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home SubjectSetter={SubjectSetter}/>} />
+      <Route path="/home" element={<Home SubjectSetter={SubjectSetter}/>} />
       <Route
         path="/quizPage"
-        element={<QuizPage Subject={Subject} Problems={Problems} Filter={Filter} />}
+        element={<QuizPage Subject={Subject} Problems={Problems} Filter={Filter} isQuizStarted={isQuizStarted} setIsQuizStarted={setIsQuizStarted} />}
       />
     </Routes>
   );

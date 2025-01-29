@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import Quiz from '../components/Quiz';
 
-const QuizPage = ({ Subject, Problems, Filter }) => {
+const QuizPage = ({ Subject, Problems, Filter, isQuizStarted, setIsQuizStarted }) => {
     useEffect(() => {
         if (Subject) {
             Filter('easy');
@@ -10,13 +10,15 @@ const QuizPage = ({ Subject, Problems, Filter }) => {
     }, [Subject]);
 
     return (
-        <div className="flex">
-            <Sidebar Filter={Filter} />
-            <div className="w-3/4 p-6 ml-64 overflow-y-auto h-screen">
+        <div className="flex h-screen">
+            <Sidebar Filter={Filter} setIsQuizStarted={setIsQuizStarted} />
+            <div className="w-3/4 p-6 ml-64 overflow-hidden relative">
                 {Problems.length > 0 ? (
-                    <Quiz Problems={Problems}/>
+                    <Quiz Problems={Problems} isQuizStarted={isQuizStarted} setIsQuizStarted={setIsQuizStarted} />
                 ) : (
-                    <div>No problems available for this level.</div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        No problems available for this level.
+                    </div>
                 )}
             </div>
         </div>
